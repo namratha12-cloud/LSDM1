@@ -11,27 +11,30 @@
 
 # Files Included
   - Core Python Scripts
-  - app.py - Flask web application server
-  -  model.py - LSTM model architecture definition
-  - train.py - Training script
-  -  preprocess.py - Data preprocessing pipeline
-  -  predict.py - Standalone prediction script
-  -  utils.py - Text cleaning utilities
+  - ```bash app.py ``` - Flask web application server
+  - ```bash model.py ``` - LSTM model architecture definition
+  - ```bash train.py ``` - Training script
+  - ```bash preprocess.py ```- Data preprocessing pipeline
+  - ```bash predict.py ``` - Standalone prediction script
+  - ```bash utils.py ```- Text cleaning utilities
 
 # Web Application
-  - templates/index.html - Frontend UI
-  - static/style.css - Premium CSS styling
+  - ```bash templates/index.html ``` - Frontend UI
+  - ```bash static/style.css ``` - Premium CSS styling
 
 # Trained Assets
- -  resume_lstm_model.h5 - Trained LSTM model (~60 MB)
- - tokenizer.pkl - Fitted tokenizer for text processing
- - label_encoder.pkl - Label encoder for categories
+ - ```bash resume_lstm_model.h5 ``` - Trained LSTM model (~60 MB)
+ - ```bash tokenizer.pkl ``` - Fitted tokenizer for text processing
+ - ```bash label_encoder.pkl ``` - Label encoder for categories
 
 # Installation
   - Install Dependencies
   - pip install flask tensorflow pandas scikit-learn
-  - Run the Web Application
-  - python app.py
+    
+# Run the Web Application
+  ```bash
+    python app.py
+  ```
   - Access the Application Open your browser and navigate to: http://127.0.0.1:5000
 
 # Usage
@@ -47,7 +50,9 @@
   - print(f"Predicted Category: {category}")
 
 # Retraining the Model
-  python train.py
+  ```bash
+    python train.py
+  ```
 
 # Model Performance
 - **Dataset:** 2,484 resumes
@@ -56,7 +61,8 @@
 - **Training:** 10 epochs with validation split
 
 # Job Categories
-The model classifies resumes into the following categories:
+The model classifies resumes into the following categories/
+```
 |
 |--ACCOUNTANT
 |--ADVOCATE
@@ -82,6 +88,7 @@ The model classifies resumes into the following categories:
 |--PUBLIC-RELATIONS
 |--SALES
 |--TEACHER
+```
 
 # Technical Details
 - **Framework:** TensorFlow/Keras
