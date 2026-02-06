@@ -4,10 +4,10 @@
 # Project Overview
   This project implements a complete pipeline for resume classification:
 
-**Data Preprocessing:** Text cleaning, tokenization, and sequence padding
-**Model Architecture:** LSTM-based neural network with embedding layer
-**Web Application:** Flask-based UI with premium glassmorphic design
-**Trained Model:** Ready-to-use model trained on 2,484 resumes across 24 job categories
+-**Data Preprocessing:** Text cleaning, tokenization, and sequence padding
+-**Model Architecture:** LSTM-based neural network with embedding layer
+-**Web Application:** Flask-based UI with premium glassmorphic design
+-**Trained Model:** Ready-to-use model trained on 2,484 resumes across 24 job categories
 
 # Files Included
   Core Python Scripts
