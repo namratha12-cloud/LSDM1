@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Classifier | LSTM AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <header>
+            <h1>Resume Classifier</h1>
+            <p>Paste your resume text below to identify your career category using LSTM Deep Learning.</p>
+        </header>
+
+        <main>
+            <div class="input-section glass">
+                <textarea id="resumeInput" placeholder="Paste resume content here..."></textarea>
+                <button id="classifyBtn">Classify Resume</button>
+            </div>
+
+            <div id="resultSection" class="result-section glass hidden">
+                <h2>Prediction Result</h2>
+                <div class="result-card">
+                    <div class="category-label">Category</div>
+                    <div id="categoryValue" class="category-value">---</div>
+                    <div class="confidence-container">
+                        <span>Confidence:</span>
+                        <span id="confidenceValue">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="loader" class="loader hidden">
+                <div class="spinner"></div>
+                <p>Analyzing text...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by TensorFlow & LSTM</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('classifyBtn').addEventListener('click', async () => {
+            const resumeText = document.getElementById('resumeInput').value;
+            const resultSection = document.getElementById('resultSection');
+            const loader = document.getElementById('loader');
+            const categoryValue = document.getElementById('categoryValue');
+            const confidenceValue = document.getElementById('confidenceValue');
+
+            if (!resumeText.trim()) {
+                alert('Please enter some resume text');
+                return;
+            }
+
+            // UI Feedback
+            resultSection.classList.add('hidden');
+            loader.classList.remove('hidden');
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ resume: resumeText })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                } else {
+                    categoryValue.innerText = data.category;
+                    confidenceValue.innerText = (data.confidence * 100).toFixed(2) + '%';
+                    resultSection.classList.remove('hidden');
+                }
+            } catch (error) {
+                alert('An error occurred. Is the server running?');
+            } finally {
+                loader.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
